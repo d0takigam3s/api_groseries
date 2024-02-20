@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Tienda de abarrotes</title>
+</head>
+
+<body>
+
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Abarrotes ❤️ANGEL DUST❤️</h1>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" data-icon="home">Inicio</a></li>
+                    <li><a href="#" data-icon="tag" class="ui-btn-active">Productos</a></li>
+                    <li><a href="#" data-icon="user">Empleados</a></li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content">
+            <form action="/" method="POST">
+
+                <input type="text" name="barcode" id="txt_barcode" placeholder="Codigo de Barras" value="">
+
+                <input type="text" name="description" id="txt_description" placeholder="Descripción" value="">
+
+                <input type="text" name="brand" id="txt_brand" placeholder="Marca" value="">
+
+                <input type="text" name="cost" id="txt_cost" placeholder="Precio de Compra" value="">
+
+                <input type="text" name="price" id="txt_price" placeholder="Precio de Venta" value="">
+
+                <input type="number" name="stock" id="txt_stock" placeholder="Existencias" value="">
+
+                <input type="date" data-inline="true" name="expiredDate">
+
+                <label for="flip-2">Activo</label>
+                <select name="status" id="flip-2" data-role="slider">
+                    <option value="0">Off</option>
+                    <option value="1">On</option>
+                </select>
+
+                <button type="submit" class="ui-shadow ui-btn ui-co rner-all ui-mini">Guardar</button>
+
+            </form>
+            <form>
+                <input data-type="search" id="searchForCollapsibleSet">
+            </form>
+            <div data-role="collapsibleset" data-filter="true" data-inset="true" id="collapsiblesetForFilter"
+                data-input="#searchForCollapsibleSet">
+                <% products.forEach((product)=>{ %>
+                <div data-role="collapsible" data-filtertext="<%= product.description %>">
+                    <h3><%= product.description %></h3>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Código de Barras: <%= product.barcode %></li>
+                        <li>Marca: <%= product.brand %></li>
+                        <li>Precio de Compra: <%= product.price %></li>
+                        <li>Precio de Venta: <%= product.cost %></li>
+                        <li>Stock: <%= product.stock %></li>
+                        <li>Fecha de Caducidad: <%= product.expiredDate %></li>
+                        <li>Estatus: <%= product.status %></li>
+                        <li><a href="/<%= product.barcode %>" class="ui-btn">Editar</a></li>
+                        <li><a href="/delete/<%= product.barcode %>" class="ui-btn">eliminar</a></li>
+
+
+
+
+                    </ul>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+        <div data-role="footer">
+            <h5>Developed by d0taki</h5>
+        </div>
+    </div>
+</body>
+
+</html>
